@@ -1,0 +1,41 @@
+Guía de Trabajos Prácticos – Actividad N°1
+
+
+
+  
+I. Fase de Contrato
+
+Definamos qué métodos existen y que hacen:
+InicializarPila() → crea una pila vacía
+Apilar(x) → agrega un elemento arriba de la pila
+Desapilar() → saca el elemento de arriba
+Tope() → devuelve el elemento de arriba sin sacarlo
+PilaVacia() → devuelve verdadero si no hay elementos
+
+Apliquémoslo a un ejemplo simple pero explicativo, un cajero automático.
+
+El banco define qué operaciones existen:
+
+InsertarTarjeta()
+IngresarPIN()
+RetirarDinero(monto)
+ConsultarSaldo()
+ExpulsarTarjeta()
+Ese es el contrato: las operaciones que el cajero promete que se pueden hacer.
+
+
+
+
+II. Uso del Usuario
+
+Si una persona quiere hacer uso del cajero automático para, por ejemplo, retirar dinero, tendría que seguir este orden:
+
+1. InsertarTarjeta()
+2. IngresarPIN()
+3. RetirarDinero(10000)
+4. ExpulsarTarjeta()
+
+Lo que el usuario no sabe en este caso es cómo el cajero se conecta al banco, como se verifica el PIN en el banco ni como se actualiza la base de datos, solo sabe qué puede hacer con el sistema.
+Eso es exactamente la fase de contrato: definir las operaciones disponibles, sin explicar cómo están implementadas.
+
+En resumen, podemos pesar la cuenta de banco como una PILA, porque el ultimo peso que ingresas es el primero que retiras.
