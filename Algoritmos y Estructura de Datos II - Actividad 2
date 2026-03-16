@@ -1,0 +1,74 @@
+Guía de Trabajos Prácticos – Actividad N°2
+Estrategias de Implementación de una Pila
+
+
+Podemos analizar distintas formas de guardar los elementos de una pila utilizando un arreglo, y entender qué ventajas y desventajas tiene cada una.
+Imaginemos una pila de libros en un escritorio.
+
+
+Estrategia 1: Arreglo + variable cantidad
+
+Esta estrategia usa un arreglo para guardar los libros y una variable que dice cuántos hay. Por ejemplo:
+Libros en la pila:
+•	Libro A
+•	Libro B
+•	Libro C
+Cantidad de los libros = 3
+Cuando agregamos un libro nuevo, simplemente lo ponemos arriba de la pila y aumentamos la cantidad.
+
+Ventajas
+
+No hace falta mover los libros, es una estrategia muy rápida.
+
+Desventajas
+
+Necesitamos una variable extra para guardar la cantidad de elementos.
+
+
+Estrategia 2: El tope siempre está en la posición 0
+
+Esta estrategia determina que el libro de arriba siempre esté en la primera posición del arreglo. Si agregamos un libro nuevo, tenemos que mover todos los libros un lugar hacia la derecha para hacer espacio. Ejemplo:
+Antes:
+•	Libro A
+•	Libro B
+•	Libro C
+Si agregamos el Libro D, todos se corren:
+•	Libro D
+•	Libro A
+•	Libro B
+•	Libro C
+
+Ventajas
+
+El libro de arriba siempre está muy fácil de encontrar.
+
+Desventajas
+
+Hay que mover todos los elementos cada vez que se agrega uno, lo que hace que sea una estrategia lenta.
+
+
+Estrategia 3: La posición 0 guarda la cantidad
+
+Esta estrategia usa la primera posición del arreglo para guardar cuántos elementos hay. Ejemplo:
+Posición 0 → Cantidad de libros (3)
+Posición 1 → Libro A
+Posición 2 → Libro B
+Posición 3 → Libro C
+Cuando agregamos un libro, aumentamos la cantidad y lo ponemos al final.
+
+Ventajas
+
+No necesitamos una variable externa y no hay que mover elementos.
+
+Desventajas
+
+Perdemos una posición del arreglo para guardar la cantidad.
+
+
+Con todo esto dicho, podemos concluir en que las tres estrategias permiten implementar una pila, pero no todas son igual de eficientes.
+
+La Estrategia 1 es la más rápida porque no mueve elementos, pero sí o sí necesitas una variable externa.
+La Estrategia 2 es la más lenta porque siempre hay que desplazar todos los datos.
+La Estrategia 3 también es rápida, pero pierde un espacio del arreglo.
+
+Elección: elegimos la estrategia 3 porque la cantidad de elementos del array viene incluido en el valor inicial.
