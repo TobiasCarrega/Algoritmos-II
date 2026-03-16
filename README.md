@@ -23,6 +23,4 @@ Las actividades estarán organizadas por **clase o temática**, permitiendo un s
 - Ian Ozafran
 - Franco Vera
 
-## Estructura del repositorio
 
-El repositorio se organizará de la siguiente manera:
