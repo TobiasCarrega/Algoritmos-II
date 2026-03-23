@@ -1,0 +1,25 @@
+Algoritmos y Estructura de Datos II - Clase 3
+
+Bloque 1: (LIFO – Last In, First Out)
+
+-	Historial de Navegación:
+Cuando visitas las paginas fi.uba.ar, campus.utn.edu.ar, stackoverflow.com, se apilan en ese orden quedando stackoverflow.com en el tope. Al presionar “Atrás” desapilás el que queda en el tope y volvés a campus.utn.edu.ar. O sea, siempre se va la última visitada
+
+-	Editor de Código (Undo / Deshacer)
+Cada vez que hacés un cambio, apilas el estado del código (por ejemplo, una versión anterior) y cuando hacés un “Undo”, desapilás, recuperando el estado anterior. Básicamente, la pila guarda el historial de cambios.
+
+-	Balanceo de Paréntesis
+Tenemos la expresión ( ( a + b ) * c ), entonces se recorre de izquierda a derecha, los paréntesis que abren apilan y los que cierran desapilan, dependiendo de donde estén los paréntesis desapilan uno u otro. Al cerrarse siempre se verifica el cierre. Si a este ejemplo le agregamos, por ejemplo, una multiplicación por una suma, quedando ( ( a + b ) * c  ) * ( a + b) ), seguiría quedando la pila vacía al final de proceso de apilar y desapilar. 
+
+-	Reversión de String
+Para dar vuelta la palabra “ALGORITMOS”, primero apilamos las letras: 
+A → L → G → O → R → I → T → M → O → S
+Desapilamos letra por letra:
+S → O → M → T → I → R → O → G → L → A
+Resultado: “SOMTIROGLA”
+
+-	Pilar de Llamadas (Call Stack)
+Para que una función llame a otra, pensémoslo como una pila de tareas que el programa tiene que hacer. Empieza con Main(), que es lo primero que se ejecuta; Main() llama a CalcularPromedio(), que se apila arriba y desde CalcularPromedio() se llama a Sumar(), que se apila arriba de todo. La pila quedaría así, de abajo hacia arriba:
+Main → CalcularPromedio → Sumar (Tope)
+-	Navegación de Directorios
+Para saber a qué carpeta volvés si presionas “Subir de nivel”, primero entramos al Explorador de Archivos, esto asumiendo que estamos en Windows 11. Desde ahí, entramos al disco C:/, después a la carpeta “Usuarios”, y por último y consiguiente a “Documentos”.  Si se presiona “Subir de nivel”, básicamente se desapila la ultima acción, volviendo a “Usuarios”. La pila guarda el camino recorrido.
