@@ -60,3 +60,119 @@ En un Conjunto, si ya estás, no entrás de nuevo. Es como el derecho de admisi�
 	- Pregunta Técnica: Si llamás a Elegir dos veces seguidas sin llamar a Sacar, ¿te devuelve el mismo elemento? (Pista: Es arbitrario, no necesariamente aleatorio).
 		- No necesariamente devuelve el mismo elemento. La operación Elegir devuelve un elemento arbitrario del conjunto, es decir, cualquiera de los elementos 
 		sin garantizar cuál será. Como no se llamó a Sacar, el elemento sigue en el conjunto, pero la siguiente llamada a Elegir podría devolver el mismo elemento o uno distinto.
+
+Bloque 4: Diccionarios Simples y Múltiples (Clave-Valor)
+
+-	Agenda de Contactos
+Tipo: Simple
+Clave: Nombre
+Valor: Número de Teléfono
+No puede haber dos Claves iguales
+Código: 
+// Clave: nombre | Valor: teléfono
+Map<String, Integer> agenda = new HashMap<>();
+agenda.put("Juan", 11223344);
+agenda.put("Maria", 22334455);
+// recuperar
+int tel = agenda.get("Juan");
+
+Cada nombre tiene un solo teléfono.
+
+-	Diccionario de Sinónimos
+Tipo: Múltiple
+Clave: Palabra
+Valor: Conjunto de sinónimos
+Ejemplo: "Feliz" → {Contento, Alegre, Eufórico}
+Código: 
+// Clave: palabra | Valor: conjunto de sinónimos
+Map<String, Set<String>> sinonimos = new HashMap<>();
+sinonimos.put("Feliz", new HashSet<>());
+sinonimos.get("Feliz").add("Contento");
+sinonimos.get("Feliz").add("Alegre"); 
+
+Una palabra tiene varios valores.
+
+-	Puntajes de Torneo
+Tipo: Simple
+Clave: Usuario
+Valor: Puntaje máximo
+Ejemplo: "Player123" → 2500
+Código:
+// Clave: jugador | Valor: puntaje maximo
+Map<String, Integer> puntajes = new HashMap<>();
+puntajes.put("Player1", 2500);
+puntajes.put("Player2", 1800);
+
+Cada jugador tiene un único puntaje
+
+-	Traductor
+Tipo: Múltiple
+Clave: Palabra
+Valor: Traducciones
+Ejemplo: "Bank" → {Banco, Orilla}
+
+
+Código:
+// Clave: palabra | Valor: traducciones
+Map<String, Set<String>> traductor = new HashMap<>();
+traductor.put("Bank", new HashSet<>());
+traductor.get("Bank").add("Banco");
+traductor.get("Bank").add("Orilla");
+
+Una palabra puede tener varios significados.
+
+-	Índices de Libro
+Tipo: Múltiple
+Clave: Palabra
+Valor: Páginas
+Ejemplo: "Recursión" → {12, 45, 88}
+Código:
+// Clave: palabra | Valor: paginas
+Map<String, Set<Integer>> indice = new HashMap<>();
+indice.put("Recursion", new HashSet<>());
+indice.get("Recursion").add(12);
+indice.get("Recursion").add(45);
+indice.get("Recursion").add(88);
+
+Una palabra aparece en varias páginas
+
+-	Inscripción por Alumno
+Tipo: Múltiple
+Clave: Legajo
+Valor: Conjunto de Materias
+Ejemplo: 12345 → {EDA, Matemática, Física}
+Código:
+// Clave: legajo | Valor: materias
+Map<Integer, Set<String>> inscripciones = new HashMap<>();
+inscripciones.put(12345, new HashSet<>());
+inscripciones.get(12345).add("EDA");
+inscripciones.get(12345).add("Matematica");
+
+Un alumno puede estar en varias materias.
+
+-	DNS
+Tipo: Simple
+Clave: Dominio
+Valor: IP
+Ejemplo: "google.com" → 142.250.190.46
+Código:
+// Clave: dominio | Valor: IP
+Map<String, String> dns = new HashMap<>();
+dns.put("google.com", "142.250.190.46");
+
+Cada dominio tiene una sola IP
+
+-	Bot
+Tipo: Simple
+Clave: ID de orden
+Valor: Script
+Ejemplo: #123 → script.py
+
+
+
+Código:
+// Clave: id orden | Valor: script
+Map<Integer, String> bot = new HashMap<>();
+bot.put(1001, "scriptResolverError.py");
+      
+Cada orden tiene un único script asociado
