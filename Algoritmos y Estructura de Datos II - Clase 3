@@ -30,21 +30,19 @@ En un Conjunto, si ya estás, no entrás de nuevo. Es como el derecho de admisi�
 - Padrón Electoral: Registro de alumnos para votar en el Centro de Estudiantes.
 	-Operación Clave: ¿Cómo evitás que un "vivo" vote dos veces usando Pertenece?
 		-Lo que hago es llevar un registro o documento donde se anoten todos los datos del alumno como por ejemplo: El legago (identificador unico), el nombre y el apellido
-		En el caso del conjunto los elementos no tienen repetidos y para identificar si un elemento ya se encuentra en la "bolsa" de elementos podemos preguntar si pertenece. Ya 		que almacenamos los datos registrados y los consultamos. Cuando un alumno intenta votar, se usa la operación Pertenece para verificar si su legajo ya está en el conjunto. 		Si pertenece, significa que ya votó y no se le permite votar nuevamente. Si no pertenece, se le permite votar y se agrega su legajo al conjunto.
-
+		En el caso del conjunto los elementos no tienen repetidos y para identificar si un elemento ya se encuentra en la "bolsa" de elementos podemos preguntar si pertenece. 
+		Ya que almacenamos los datos registrados y los consultamos. Cuando un alumno intenta votar, se usa la operación Pertenece para verificar si su legajo ya está en el conjunto. 
+		Si pertenece, significa que ya votó y no se le permite votar nuevamente. Si no pertenece, se le permite votar y se agrega su legajo al conjunto.
 
 - Invitados a la Fiesta de Fin de Cursada:
 	- Consigna: ¿Qué pasa si intentás Agregar a alguien que ya está en la lista? ¿Cambia el tamaño del conjunto?
 		- Si intento agregar a alguien que ya se encuentra en la lista de la fiesta de cursada y la persona asiste al evento, entonces no voy a tener mas personas en la fiesta
 		voy a tener la misma cantidad. Por lo que el tamanio del conjunto no cambiaria.  
 
-
 - Filtro de Spam (Blacklist): Un conjunto de palabras como "Crypto", "Ganá", "Premio".
 	- Consigna: ¿Cómo verificás si un mail entrante tiene una palabra prohibida?
 		- Lo que hago es preguntar si algunas de las palabras de la lista prohibida pertenecen al conjunto de palabras prohibidas en ese caso si el elemento se encuentra 
 		en el conjunto lo que hago es marcarlo como spam y no mostrarselo al usuario.
-
-
 
 - Tags de un Blog de Ingeniería: Un post sobre Java tiene etiquetas #Programacion, #Java, #OOP.
 	- Consigna: ¿Por qué usamos un Conjunto y no una Pila para los tags?
@@ -53,13 +51,10 @@ En un Conjunto, si ya estás, no entrás de nuevo. Es como el derecho de admisi�
 
 		En cambio, una pila funciona con el principio LIFO, donde el último elemento agregado es el primero en salir. Ese comportamiento se usa para cosas como 				historial de acciones o llamadas, pero no tiene sentido para etiquetas, porque no necesitamos agregar o quitar tags siguiendo ese orden.
 
-
 - Gestión de Legajos: En la base de datos de Ingeniería en Informática, el legajo es único.
 	- Consigna: Si un alumno se anota a dos carreras, ¿cómo se asegura el sistema de no duplicar su ID?
 		- Porque los legajos se almacenan en un conjunto y ademas son identificadores unicos por lo tanto no admiten duplicados, en ese caso lo que se hace es
 		preguntar si el legajo pertenece si ya se encuentra entonces no lo agrega.
-
-
 
 - Operación Elegir vs Sacar:
 	- Pregunta Técnica: Si llamás a Elegir dos veces seguidas sin llamar a Sacar, ¿te devuelve el mismo elemento? (Pista: Es arbitrario, no necesariamente aleatorio).
