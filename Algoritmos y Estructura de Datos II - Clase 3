@@ -209,6 +209,93 @@ Funcionamiento: Se "sacrifica" o reserva la primera posición del arreglo (índi
 Operación Apilar: Los datos reales comienzan a guardarse a partir del índice 1 en adelante (alineación a la izquierda). Cada vez que agregás algo, actualizás el valor guardado en la posición 0.
 
 ¿Cuál es la más ineficiente para Apilar y por qué?
+
 La estrategia más ineficiente es la Estrategia 2.
 -Razón: Al obligar a que el tope esté siempre en el índice 0, cada vez que querés hacer un Apilar, el sistema debe desplazar todos los elementos existentes una posición a la derecha para dejar el espacio vacío al principio.
 -Complejidad: Esto tiene un costo de O(n) (lineal), lo cual es muy lento comparado con la Estrategia 1, que es O(1) (constante) porque el dato se coloca directamente en el índice que indica el contador.
+
+
+Desafío Final: El Sistema del "Departamento de Tecnología"
+
+I.	Legajos únicos → TDA Conjunto
+
+El Conjunto se usa porque no permite elementos repetidos y cada legajo representa a un alumno → tiene que ser único
+Vamos a dar un ejemplo en Java:
+
+“””
+ConjuntoTDA alumnos;
+alumnos.InicializarConjunto();
+
+if (!alumnos.Pertenece(legajo)) {
+    alumnos.Agregar(legajo);
+}
+“””
+
+En cuanto a las operaciones, lo que hace cada operación sería lo siguiente:
+Pertenece(legajo) pregunta si el alumno ya está inscripto.
+Agregar(legajo) lo agrega solo si ese alumno no estaba antes.
+
+Resumiendo, el alumno llega con su legajo, y procede a verificarse, si ya pertenece, no se agrega como nuevo alumno, si no pertenece se agrega al conjunto. Esto funciona como un filtro de duplicados ya que, justamente, los conjuntos no aceptan a los mismos.
+
+II Y III.       Lista de espera + prioridad → TDA Cola de Prioridad
+
+En la cola de prioridad hay orden de llegada, pero algunos tienen mayor prioridad, empecemos por ahí mostrando un ejemplo en Java:
+
+“””
+ColaPrioridadTDA cola;
+cola.InicializarCola();
+
+// acolar alumno con prioridad
+cola.AcolarPrioridad(legajo, prioridad);
+
+// atender alumno
+int siguiente = cola.Primero();
+cola.Desacolar();
+“””
+
+Lo que hace cada operación sería lo siguiente:
+AcolarPrioridad(legajo, prioridad) agrega al alumno con un nivel de prioridad.
+Primero() devuelve el alumno que se va a atender (el de mayor prioridad).
+Desacolar() elimina ese alumno de la cola.
+En cuanto a la lógica de esta parte del ejercicio, podríamos ponerlo en este orden:
+
+1.	Llega el alumno.
+2.	Se lo agrega con una prioridad:
+	- Ej: común → 1
+	- del departamento → 10
+3.	Cuando se atiende:
+	- Sale primero el de mayor prioridad.
+	- Si empatan, sale el que llegó primero.
+
+No siempre sale el primero que llegó, sino el que tiene mayor prioridad.
+
+En conclusión, se utiliza una cola de prioridad para gestionar la lista de espera, donde los alumnos se atienden según su prioridad (mayor valor primero), respetando el orden de llegada en caso de igualdad.
+
+IV.      Correlatividades → TDA Diccionario Múltiple
+
+Cuando usamos un diccionario múltiple, cada clave tiene varios valores, vamos a dar un ejemplo en Java:
+
+DiccionarioMultipleTDA correlativas;
+correlativas.InicializarDiccionario();
+
+“””
+// agregar correlativas
+correlativas.Agregar("EDA", "Algoritmos");
+correlativas.Agregar("EDA", "Matematica");
+
+//Consultar correlativas
+ConjuntoTDA materias = correlativas.Recuperar("EDA");
+“””
+
+Cada materia (clave) tiene varias correlativas (valores), entonces, cada operación hace lo siguiente:
+Agregar(materia, correlativa) agrega una correlativa a esa materia.
+Recuperar(materia) devuelve el conjunto de correlativas.
+
+En orden, el proceso sería este:
+1.	Se define una materia.
+2.	Se la asocian todas sus correlativas
+3.	Al validar:
+		- Se recuperan sus correlativas.
+		- Se verifica si el alumno las tiene aprobadas.
+
+En resumen, se utiliza un Diccionario Múltiple para modelar correlatividades, donde cada materia (clave) se asocia a un conjunto de materias previas (valores).
