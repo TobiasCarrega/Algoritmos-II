@@ -21,6 +21,8 @@ funcion esPalindromo(cola):
 
     retornar esPal 
 
+-No alcanza una sola pila porque invierte el orden pero no preserva el original para comparar. Necesito una pila para invertir y una cola auxiliar para mantener el orden. Así puedo comparar ambos recorridos sin perder la estructura original
+
 Desafio 2: 
 funcion contarP1(cola):
     auxP2 ← nueva Cola()
@@ -44,6 +46,8 @@ funcion contarP1(cola):
         encolar(cola, desacolar(auxP1))
 
     retornar contador
+-No se puede acceder directamente a P=1 porque la cola devuelve siempre la mayor prioridad. Debo desacolar todo, separar por prioridad en dos colas auxiliares, contar los de P=1 y luego reconstruir la cola original respetando el orden
+
 
     Desafio 3:
     funcion esUnica(pila P):
@@ -66,6 +70,8 @@ funcion contarP1(cola):
         apilar(P, desapilar(aux))
 
     retornar esUnica
+-La pila no permite consultar pertenencia sin desapilar. Uso un conjunto para verificar duplicados y una pila auxiliar para no perder el orden. Recorro desapilando, verifico en el conjunto y luego restauro la pila.
+
 
     Desafio 4: 
     funcion diferenciaSimetrica(A, B):
@@ -82,7 +88,7 @@ funcion contarP1(cola):
             agregar(R, x)
 
     retornar R
-
+-No se puede resolver en una sola pasada porque recorrer A solo permite calcular A−B. Para obtener B−A es necesario recorrer B. Por eso se requieren dos recorridos respetando el TDA.
     Desafio 5:
     1. El elemento que sale primero es =5, porque Desacolar() siempre devuelve la mayor prioridad disponible (P=2), dentro de P=2, se respeta el orden de llegada FIFO; el primero que entro en P=2 fue =5.
     2. El elemento que sale ultimo es -4, ya que es de menor prioridad (P=0) y ese mismo es el último en entrar.
