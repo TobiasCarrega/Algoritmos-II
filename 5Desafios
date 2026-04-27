@@ -1,0 +1,90 @@
+Desafio 1: 
+funcion esPalindromo(cola):
+    pila ← nueva Pila()
+    colaAux ← nueva Cola()
+    n ← tamaño(cola)
+
+    // Paso 1: copiar y preparar estructuras
+    repetir n veces:
+        x ← desencolar(cola)
+        apilar(pila, x)
+        encolar(colaAux, x)
+        encolar(cola, x)
+
+    // Paso 2: comparar
+    esPal ← verdadero
+    repetir n veces:
+        x ← desencolar(colaAux)
+        y ← desapilar(pila)
+        si x ≠ y:
+            esPal ← falso
+
+    retornar esPal 
+
+Desafio 2: 
+funcion contarP1(cola):
+    auxP2 ← nueva Cola()
+    auxP1 ← nueva Cola()
+    contador ← 0
+
+    // Vaciar y separar
+    mientras no esVacia(cola):
+        x ← desacolar(cola)
+        si x.prioridad == 2:
+            encolar(auxP2, x)
+        sino:
+            encolar(auxP1, x)
+            contador ← contador + 1
+
+    // Restaurar (orden original de prioridad)
+    mientras no esVacia(auxP2):
+        encolar(cola, desacolar(auxP2))
+
+    mientras no esVacia(auxP1):
+        encolar(cola, desacolar(auxP1))
+
+    retornar contador
+
+    Desafio 3:
+    funcion esUnica(pila P):
+    aux ← nueva Pila()
+    conj ← nuevo Conjunto()
+    esUnica ← verdadero
+
+    mientras no esVacia(P):
+        x ← desapilar(P)
+
+        si pertenece(conj, x):
+            esUnica ← falso
+        sino:
+            agregar(conj, x)
+
+        apilar(aux, x)
+
+    // Restaurar pila original
+    mientras no esVacia(aux):
+        apilar(P, desapilar(aux))
+
+    retornar esUnica
+
+    Desafio 4: 
+    funcion diferenciaSimetrica(A, B):
+    R ← nuevo Conjunto()
+
+    // A - B
+    para cada x en A:
+        si no pertenece(B, x):
+            agregar(R, x)
+
+    // B - A
+    para cada x en B:
+        si no pertenece(A, x):
+            agregar(R, x)
+
+    retornar R
+
+    Desafio 5:
+    1. El elemento que sale primero es =5, porque Desacolar() siempre devuelve la mayor prioridad disponible (P=2), dentro de P=2, se respeta el orden de llegada FIFO; el primero que entro en P=2 fue =5.
+    2. El elemento que sale ultimo es -4, ya que es de menor prioridad (P=0) y ese mismo es el último en entrar.
+    3. Salen en orden FIFO, como cola normal. La cola no rompe el orden interno, solo que los divide en grupos y  decide que grupos salen primero.
+    4. Ambos entrarian en P=1, ya que AcolarPrioridad() no verifica una unicidad, no es un conjunto es una cola entonces acpeta elementos repetidos.
