@@ -1,96 +1,184 @@
 Desafio 1: 
-funcion esPalindromo(cola):
-    pila ← nueva Pila()
-    colaAux ← nueva Cola()
-    n ← tamaño(cola)
+import java.util.*;
 
-    // Paso 1: copiar y preparar estructuras
-    repetir n veces:
-        x ← desencolar(cola)
-        apilar(pila, x)
-        encolar(colaAux, x)
-        encolar(cola, x)
+public class Desafio1 {
 
-    // Paso 2: comparar
-    esPal ← verdadero
-    repetir n veces:
-        x ← desencolar(colaAux)
-        y ← desapilar(pila)
-        si x ≠ y:
-            esPal ← falso
+    public static boolean esPalindromo(Queue<Integer> cola) {
+        Stack<Integer> pila = new Stack<>();
+        Queue<Integer> aux = new LinkedList<>();
 
-    retornar esPal 
+        int n = cola.size();
+
+        // Copiar y preparar estructuras
+        for (int i = 0; i < n; i++) {
+            int x = cola.poll();
+            pila.push(x);
+            aux.add(x);
+            cola.add(x); // restaurar original
+        }
+
+        // Comparar
+        while (!aux.isEmpty()) {
+            if (!aux.poll().equals(pila.pop())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
 
 -No alcanza una sola pila porque invierte el orden pero no preserva el original para comparar. Necesito una pila para invertir y una cola auxiliar para mantener el orden. Así puedo comparar ambos recorridos sin perder la estructura original
 
 Desafio 2: 
-funcion contarP1(cola):
-    auxP2 ← nueva Cola()
-    auxP1 ← nueva Cola()
-    contador ← 0
+import java.util.*;
 
-    // Vaciar y separar
-    mientras no esVacia(cola):
-        x ← desacolar(cola)
-        si x.prioridad == 2:
-            encolar(auxP2, x)
-        sino:
-            encolar(auxP1, x)
-            contador ← contador + 1
+class Elemento {
+    int valor;
+    int prioridad; // 2 = mayor, 1, 0
 
-    // Restaurar (orden original de prioridad)
-    mientras no esVacia(auxP2):
-        encolar(cola, desacolar(auxP2))
+    Elemento(int v, int p) {
+        valor = v;
+        prioridad = p;
+    }
+}
 
-    mientras no esVacia(auxP1):
-        encolar(cola, desacolar(auxP1))
+public class Desafio2 {
 
-    retornar contador
+    public static int contarP1(Queue<Elemento> cola) {
+        Queue<Elemento> auxP2 = new LinkedList<>();
+        Queue<Elemento> auxP1 = new LinkedList<>();
+        int contador = 0;
+
+        // Vaciar y separar
+        while (!cola.isEmpty()) {
+            Elemento x = cola.poll();
+            if (x.prioridad == 2) {
+                auxP2.add(x);
+            } else {
+                auxP1.add(x);
+                if (x.prioridad == 1) contador++;
+            }
+        }
+
+        // Restaurar
+        while (!auxP2.isEmpty()) {
+            cola.add(auxP2.poll());
+        }
+        while (!auxP1.isEmpty()) {
+            cola.add(auxP1.poll());
+        }
+
+        return contador;
+    }
+}
 -No se puede acceder directamente a P=1 porque la cola devuelve siempre la mayor prioridad. Debo desacolar todo, separar por prioridad en dos colas auxiliares, contar los de P=1 y luego reconstruir la cola original respetando el orden
 
 
     Desafio 3:
-    funcion esUnica(pila P):
-    aux ← nueva Pila()
-    conj ← nuevo Conjunto()
-    esUnica ← verdadero
+    import java.util.*;
 
-    mientras no esVacia(P):
-        x ← desapilar(P)
+public class Desafio3 {
 
-        si pertenece(conj, x):
-            esUnica ← falso
-        sino:
-            agregar(conj, x)
+    public static boolean esUnica(Stack<Integer> pila) {
+        Stack<Integer> aux = new Stack<>();
+        Set<Integer> conjunto = new HashSet<>();
 
-        apilar(aux, x)
+        boolean esUnica = true;
 
-    // Restaurar pila original
-    mientras no esVacia(aux):
-        apilar(P, desapilar(aux))
+        while (!pila.isEmpty()) {
+            int x = pila.pop();
 
-    retornar esUnica
+            if (conjunto.contains(x)) {
+                esUnica = false;
+            } else {
+                conjunto.add(x);
+            }
+
+            aux.push(x);
+        }
+
+        // Restaurar pila original
+        while (!aux.isEmpty()) {
+            pila.push(aux.pop());
+        }
+
+        return esUnica;
+    }
+}
 -La pila no permite consultar pertenencia sin desapilar. Uso un conjunto para verificar duplicados y una pila auxiliar para no perder el orden. Recorro desapilando, verifico en el conjunto y luego restauro la pila.
 
 
     Desafio 4: 
-    funcion diferenciaSimetrica(A, B):
-    R ← nuevo Conjunto()
+    import java.util.*;
 
-    // A - B
-    para cada x en A:
-        si no pertenece(B, x):
-            agregar(R, x)
+public class Desafio4 {
 
-    // B - A
-    para cada x en B:
-        si no pertenece(A, x):
-            agregar(R, x)
+    public static Set<Integer> diferenciaSimetrica(Set<Integer> A, Set<Integer> B) {
+        Set<Integer> R = new HashSet<>();
 
-    retornar R
+        // A - B
+        for (int x : A) {
+            if (!B.contains(x)) {
+                R.add(x);
+            }
+        }
+
+        // B - A
+        for (int x : B) {
+            if (!A.contains(x)) {
+                R.add(x);
+            }
+        }
+
+        return R;
+    }
+}
 -No se puede resolver en una sola pasada porque recorrer A solo permite calcular A−B. Para obtener B−A es necesario recorrer B. Por eso se requieren dos recorridos respetando el TDA.
     Desafio 5:
     1. El elemento que sale primero es =5, porque Desacolar() siempre devuelve la mayor prioridad disponible (P=2), dentro de P=2, se respeta el orden de llegada FIFO; el primero que entro en P=2 fue =5.
     2. El elemento que sale ultimo es -4, ya que es de menor prioridad (P=0) y ese mismo es el último en entrar.
     3. Salen en orden FIFO, como cola normal. La cola no rompe el orden interno, solo que los divide en grupos y  decide que grupos salen primero.
     4. Ambos entrarian en P=1, ya que AcolarPrioridad() no verifica una unicidad, no es un conjunto es una cola entonces acpeta elementos repetidos.
+
+import java.util.*;
+
+class Elem {
+    int valor;
+    int prioridad;
+
+    Elem(int v) {
+        valor = v;
+        if (v > 0) prioridad = 2;
+        else if (v == 0) prioridad = 1;
+        else prioridad = 0;
+    }
+}
+
+public class Desafio5 {
+
+    public static Queue<Elem> clasificar(Queue<Integer> cola) {
+        Queue<Elem> resultado = new LinkedList<>();
+
+        while (!cola.isEmpty()) {
+            int x = cola.poll();
+            resultado.add(new Elem(x));
+        }
+
+        return resultado;
+    }
+
+    // Simulación de desacolar por prioridad
+    public static Elem desacolarPrioridad(Queue<Elem> cola) {
+        Elem mayor = null;
+
+        for (Elem e : cola) {
+            if (mayor == null || e.prioridad > mayor.prioridad) {
+                mayor = e;
+            }
+        }
+
+        cola.remove(mayor);
+        return mayor;
+    }
+}
